@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora ASG - ITB Sostenible</title>
+    <link rel="stylesheet" href="design.css">
+</head>
+<body>
+    <header>
+        <div class="logo">🌱 ITB Sostenible</div>
+        <h1>Calculadora d'Impacte Ambiental i Econòmic</h1>
+        <p>Eina d'anàlisi de consums i projecció cap a l'economia circular</p>
+    </header>
+
+    <main>
+        <section class="controls panel">
+            <h2>⚙️ Configuració del Període</h2>
+            <div class="date-inputs">
+                <div class="input-group">
+                    <label for="startDate">Data Inici:</label>
+                    <input type="date" id="startDate" value="2024-09-01">
+                </div>
+                <div class="input-group">
+                    <label for="endDate">Data Fi:</label>
+                    <input type="date" id="endDate" value="2025-06-30">
+                </div>
+            </div>
+            <div class="buttons">
+                <button onclick="calcularResultats()" class="btn-primary">Calcular Període</button>
+                <button onclick="calcularProximAny()" class="btn-secondary">Projecció a 1 Any (365 dies)</button>
+            </div>
+        </section>
+
+        <section class="results-dashboard">
+            <h2>📊 Consum Estimat (Sense mesures d'estalvi)</h2>
+            <p class="subtitle">Això és el que gastarem si continuem amb la dinàmica actual.</p>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>⚡ Electricitat</h3>
+                    <p><strong>Període:</strong> <span id="elec-period">0</span> kWh</p>
+                    <p><strong>Projecció Any:</strong> <span id="elec-year">0</span> kWh</p>
+                </div>
+                <div class="card">
+                    <h3>💧 Aigua</h3>
+                    <p><strong>Període:</strong> <span id="water-period">0</span> L</p>
+                    <p><strong>Projecció Any:</strong> <span id="water-year">0</span> L</p>
+                </div>
+                <div class="card">
+                    <h3>📦 Material Oficina</h3>
+                    <p><strong>Període:</strong> <span id="mat-period-unit">0</span> unitats | <span id="mat-period-eur">0</span> €</p>
+                    <p><strong>Projecció Any:</strong> <span id="mat-year-unit">0</span> unitats | <span id="mat-year-eur">0</span> €</p>
+                </div>
+                <div class="card">
+                    <h3>🧼 Neteja</h3>
+                    <p><strong>Període:</strong> <span id="clean-period-l">0</span> L | <span id="clean-period-eur">0</span> €</p>
+                    <p><strong>Projecció Any:</strong> <span id="clean-year-l">0</span> L | <span id="clean-year-eur">0</span> €</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reduction-dashboard panel">
+            <h2>🎯 Pla d'Acció Circular: Objectiu -30% (Any 3)</h2>
+            <p class="subtitle">Impacte directe un cop implementades les mesures de sostenibilitat al centre.</p>
+
+            <div class="split-layout">
+                <div class="reduction-numbers">
+                    <h3>Nous Consums Projectats</h3>
+                    <ul class="impact-list">
+                        <li>
+                            <span class="icon">⚡</span>
+                            <div class="data">
+                                <strong>Electricitat:</strong> <span id="elec-red-period">0</span> kWh
+                                <br><small>(Estalvi d'un 30%)</small>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="icon">💧</span>
+                            <div class="data">
+                                <strong>Aigua:</strong> <span id="water-red-period">0</span> L
+                                <br><small>(Estalvi d'un 30%)</small>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="icon">📦</span>
+                            <div class="data">
+                                <strong>Material:</strong> <span id="mat-red-eur">0</span> € (<span id="mat-red-unit">0</span> unitats)
+                                <br><small>(Estalvi d'un 30%)</small>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="reduction-strategies">
+                    <h3>Com ho aconseguirem?</h3>
+                    <div class="strategy-card">
+                        <h4>🔌 Tall de subministrament fantasma</h4>
+                        <p>Eliminació del consum per *standby* fora de l'horari lectiu (nits i caps de setmana). Automatització de l'apagat de servidors no crítics i diferencials d'aules.</p>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>🚰 Sistemes de gestió d'aigua</h4>
+                        <p>Instal·lació de polsadors temporitzats a tots els lavabos i protocols de revisió setmanal de fuites per reduir la mitjana diària de 5000L.</p>
+                    </div>
+                    <div class="strategy-card">
+                        <h4>♻️ Digitalització i Compra Granel</h4>
+                        <p>Política de "Zero Paper" a les entregues i compra de recanvis de tinta a granel per allargar la vida útil dels materials d'oficina existents.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="calculator.js"></script>
+</body>
+</html>
