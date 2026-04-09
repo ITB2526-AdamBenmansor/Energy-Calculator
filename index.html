@@ -3,27 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora ASG - ITB Sostenible</title>
-    <link rel="stylesheet" href="design.css">
+    <title>Calculadora ASG i Solar - ITB Sostenible</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <div class="logo">🌱 ITB Sostenible</div>
-        <h1>Calculadora d'Impacte Ambiental i Econòmic</h1>
-        <p>Eina d'anàlisi de consums i projecció cap a l'economia circular</p>
+        <h1>Calculadora d'Impacte Ambiental i Autoconsum</h1>
+        <p>Anàlisi TIC i projecció d'independència energètica de l'institut</p>
     </header>
 
     <main>
         <section class="controls panel">
-            <h2>⚙️ Configuració del Període</h2>
-            <div class="date-inputs">
-                <div class="input-group">
-                    <label for="startDate">Data Inici:</label>
-                    <input type="date" id="startDate" value="2024-09-01">
+            <h2>⚙️ Configuració del Període i Instal·lació Solar</h2>
+            <div class="split-layout controls-layout">
+                <div class="date-inputs">
+                    <div class="input-group">
+                        <label for="startDate">Data Inici:</label>
+                        <input type="date" id="startDate" value="2024-09-01">
+                    </div>
+                    <div class="input-group">
+                        <label for="endDate">Data Fi:</label>
+                        <input type="date" id="endDate" value="2025-06-30">
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label for="endDate">Data Fi:</label>
-                    <input type="date" id="endDate" value="2025-06-30">
+                <div class="solar-stats-box">
+                    <h4>📡 Instal·lació Actual</h4>
+                    <p>Panells: <strong>136</strong> (34 grups de 4)</p>
+                    <p>Potència Total: <strong>61.2 kWp</strong></p>
                 </div>
             </div>
             <div class="buttons">
@@ -32,84 +39,107 @@
             </div>
         </section>
 
+        <div id="ipc-alert" class="ipc-alert" style="display: none;">
+            ⚠️ <strong>Impacte de la Inflació:</strong> S'està aplicant un augment del <span id="ipc-percentage">0</span>% sobre els costos econòmics a causa de l'IPC acumulat des de 2024 fins a <span id="ipc-year">2024</span>.
+        </div>
+
         <section class="results-dashboard">
-            <h2>📊 Consum Estimat (Sense mesures d'estalvi)</h2>
-            <p class="subtitle">Això és el que gastarem si continuem amb la dinàmica actual.</p>
-            <div class="grid-container">
-                <div class="card">
+            <h2>📊 Balanç Energètic i d'Impacte (Sense mesures d'estalvi)</h2>
+            <p class="subtitle">Anàlisi de consums, generació solar i residus si continuem igual.</p>
+
+            <div class="main-energy-board">
+                <div class="energy-col">
                     <h3>⚡ Electricitat</h3>
-                    <p><strong>Període:</strong> <span id="elec-period">0</span> kWh</p>
-                    <p><strong>Projecció Any:</strong> <span id="elec-year">0</span> kWh</p>
+                    <div class="energy-data-subgrid">
+                        <div class="sub-card consum">
+                            <h4>Consum Total</h4>
+                            <p>Període: <span id="elec-cons-period">0</span> kWh</p>
+                            <p>Any: <span id="elec-cons-year">0</span> kWh</p>
+                        </div>
+                        <div class="sub-card generacio">
+                            <h4>Generació Solar</h4>
+                            <p>Període: <span id="elec-gen-period">0</span> kWh</p>
+                            <p>Any: <span id="elec-gen-year">0</span> kWh</p>
+                        </div>
+                    </div>
+                    <div class="sub-card balanc">
+                        <h4>Consum Net (Xarxa)</h4>
+                        <p class="impacte-reduit">Compensem <span id="elec-comp-perc">0</span>% del consum lectiu</p>
+                        <p class="net-value">Període: <span id="elec-net-period">0</span> kWh</p>
+                        <p class="net-value">Any: <span id="elec-net-year">0</span> kWh</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>💧 Aigua</h3>
-                    <p><strong>Període:</strong> <span id="water-period">0</span> L</p>
-                    <p><strong>Projecció Any:</strong> <span id="water-year">0</span> L</p>
-                </div>
-                <div class="card">
-                    <h3>📦 Material Oficina</h3>
-                    <p><strong>Període:</strong> <span id="mat-period-unit">0</span> unitats | <span id="mat-period-eur">0</span> €</p>
-                    <p><strong>Projecció Any:</strong> <span id="mat-year-unit">0</span> unitats | <span id="mat-year-eur">0</span> €</p>
-                </div>
-                <div class="card">
-                    <h3>🧼 Neteja</h3>
-                    <p><strong>Període:</strong> <span id="clean-period-l">0</span> L | <span id="clean-period-eur">0</span> €</p>
-                    <p><strong>Projecció Any:</strong> <span id="clean-year-l">0</span> L | <span id="clean-year-eur">0</span> €</p>
+
+                <div class="other-impacts-col">
+                    <div class="other-grid">
+                        <div class="card">
+                            <h3>💧 Aigua</h3>
+                            <p><strong>Període:</strong> <span id="water-period">0</span> L</p>
+                            <p><strong>Projecció Any:</strong> <span id="water-year">0</span> L</p>
+                        </div>
+                        <div class="card">
+                            <h3>📦 Material Oficina</h3>
+                            <p><strong>Període:</strong> <span id="mat-period-unit">0</span> unitats | <span id="mat-period-eur">0</span> €</p>
+                            <p><strong>Projecció Any:</strong> <span id="mat-year-unit">0</span> unitats | <span id="mat-year-eur">0</span> €</p>
+                        </div>
+                        <div class="card">
+                            <h3>🧼 Neteja</h3>
+                            <p><strong>Període:</strong> <span id="clean-period-l">0</span> L | <span id="clean-period-eur">0</span> €</p>
+                            <p><strong>Projecció Any:</strong> <span id="clean-year-l">0</span> L | <span id="clean-year-eur">0</span> €</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="reduction-dashboard panel">
-            <h2>🎯 Pla d'Acció Circular: Objectiu -30% (Any 3)</h2>
-            <p class="subtitle">Impacte directe un cop implementades les mesures de sostenibilitat al centre.</p>
+            <div class="reduction-header">
+                <h2>🎯 Pla d'Acció d'Economia Circular: Objectiu -30% (Any 3)</h2>
+                <div class="target-flag">Estalvi necessari: <span id="savings-needed-eur">0</span> €</div>
+            </div>
+            <p class="subtitle">Anàlisi d'accions combinades: eficiència TIC i ampliació de la teulada solar.</p>
 
             <div class="split-layout">
-                <div class="reduction-numbers">
-                    <h3>Nous Consums Projectats</h3>
-                    <ul class="impact-list">
-                        <li>
-                            <span class="icon">⚡</span>
-                            <div class="data">
-                                <strong>Electricitat:</strong> <span id="elec-red-period">0</span> kWh
-                                <br><small>(Estalvi d'un 30%)</small>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="icon">💧</span>
-                            <div class="data">
-                                <strong>Aigua:</strong> <span id="water-red-period">0</span> L
-                                <br><small>(Estalvi d'un 30%)</small>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="icon">📦</span>
-                            <div class="data">
-                                <strong>Material:</strong> <span id="mat-red-eur">0</span> € (<span id="mat-red-unit">0</span> unitats)
-                                <br><small>(Estalvi d'un 30%)</small>
-                            </div>
-                        </li>
-                    </ul>
+                <div class="reduction-left">
+                    <div class="reduction-numbers">
+                        <h3>1. Reducció de Consums per Eficiència</h3>
+                        <ul class="impact-list">
+                            <li><span class="icon">🔌</span> <div class="data"><strong>Electricitat Lectiva:</strong> Tall standby nits/findes.</div></li>
+                            <li><span class="icon">🚰</span> <div class="data"><strong>Aigua:</strong> Polsadors temporitzats.</div></li>
+                            <li><span class="icon">♻️</span> <div class="data"><strong>Material:</strong> Digitalització Zero Paper.</div></li>
+                        </ul>
+                    </div>
+                    <div class="sub-card balanc actualitzat">
+                        <h4>Impacte TIC Reduït (Eficiència)</h4>
+                        <p>Nous Euros/Període: <span id="total-cost-reduced-eur">0</span> €</p>
+                    </div>
                 </div>
 
-                <div class="reduction-strategies">
-                    <h3>Com ho aconseguirem?</h3>
-                    <div class="strategy-card">
-                        <h4>🔌 Tall de subministrament fantasma</h4>
-                        <p>Eliminació del consum per *standby* fora de l'horari lectiu (nits i caps de setmana). Automatització de l'apagat de servidors no crítics i diferencials d'aules.</p>
-                    </div>
-                    <div class="strategy-card">
-                        <h4>🚰 Sistemes de gestió d'aigua</h4>
-                        <p>Instal·lació de polsadors temporitzats a tots els lavabos i protocols de revisió setmanal de fuites per reduir la mitjana diària de 5000L.</p>
-                    </div>
-                    <div class="strategy-card">
-                        <h4>♻️ Digitalització i Compra Granel</h4>
-                        <p>Política de "Zero Paper" a les entregues i compra de recanvis de tinta a granel per allargar la vida útil dels materials d'oficina existents.</p>
+                <div class="reduction-right">
+                    <div class="strategy-card solar-expansion">
+                        <h4>☀️ 2. Coberta Solar Sostenible (Per arribar al -30%)</h4>
+                        <p class="subtitle">Càlcul per compensar el gasto econòmic TIC restant.</p>
+                        <div class="solar-calc-results">
+                            <div class="calc-res-item">
+                                <span class="calc-val" id="extra-generation-needed-kwh">0</span> kWh
+                                <span class="calc-label">Generació Extra Necessària</span>
+                            </div>
+                            <div class="calc-res-item highlight">
+                                <span class="calc-val" id="extra-panels-needed-count">0</span> plaques
+                                <span class="calc-label">Nous panells necessaris</span>
+                            </div>
+                            <div class="calc-res-item">
+                                <span class="calc-val" id="extra-panels-perc">0</span>%
+                                <span class="calc-label">Augment de teulada</span>
+                            </div>
+                        </div>
+                        <p class="implementation-note">Implicaria afegir aprox. <strong id="groups-needed-count">0</strong> grups més de 4 panells a la teulada actual.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <script src="calculator.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
