@@ -1,151 +1,187 @@
 :root {
-    --primary-color: #2e7d32; /* Verd ecològic fosc */
-    --primary-light: #4caf50; /* Verd clar ITB */
-    --accent-solar: #fbc02d; /* Groc solar */
-    --accent-reduit: #1976d2; /* Blau per impacte reduït */
-    --bg-color: #f7fbf7;
-    --panel-bg: #ffffff;
-    --text-main: #2c3e50;
-    --text-muted: #6c7a89;
-    --reduction-bg: #e8f5e9; /* Verd molt clar per fons de reducció */
-    --border-radius: 12px;
-}
-
-* {
-    box-sizing: border-box;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --primary: #1e293b;
+    --accent: #059669;
+    --bg-color: #f1f5f9;
+    --card-bg: #ffffff;
+    --border: #e2e8f0;
 }
 
 body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
     background-color: var(--bg-color);
-    color: var(--text-main);
+    color: var(--primary);
     margin: 0;
-    line-height: 1.6;
+    padding: 20px;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 header {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-    color: white;
-    padding: 40px 20px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
 }
 
-.logo { font-weight: 800; letter-spacing: 1.5px; margin-bottom: 10px; font-size: 1.2rem; }
-header h1 { margin: 0 0 10px 0; font-size: 2.3rem; font-weight: 800; }
-header p { margin: 0; opacity: 0.9; font-size: 1.1rem; }
+header h1 {
+    color: var(--accent);
+    margin-bottom: 5px;
+}
 
-main {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
+header p {
+    color: #64748b;
+    font-size: 1.1rem;
+    margin-top: 0;
 }
 
 .panel {
-    background: var(--panel-bg);
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    margin-bottom: 40px;
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+    border: 1px solid var(--border);
 }
 
-h2 { color: var(--primary-color); margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 12px; font-weight: 700; }
-h3 { margin-top: 0; color: #333; font-weight: 700; }
-h4 { margin: 0 0 8px 0; font-weight: 600; color: #555; }
-.subtitle { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; margin-top: -10px;}
+h2 {
+    font-size: 1.3rem;
+    color: var(--primary);
+    border-bottom: 2px solid var(--bg-color);
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
 
-/* Controls i Info Solar actual */
-.controls-layout { align-items: center; gap: 30px; }
-.date-inputs { display: flex; gap: 20px; flex-wrap: wrap; flex: 2; }
-.input-group { display: flex; flex-direction: column; }
-.input-group label { font-weight: 600; margin-bottom: 5px; color: #555; }
-input[type="date"] { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
+/* Panel Dates */
+.date-inputs {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+}
 
-.solar-stats-box { flex: 1; background: #fffde7; border: 1px solid #fff9c4; padding: 20px; border-radius: 8px; border-left: 5px solid var(--accent-solar); }
-.solar-stats-box h4 { color: #f57f17; }
-.solar-stats-box p { margin: 5px 0; color: #7f6d0a; }
+.date-inputs label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+}
 
-.buttons { display: flex; gap: 15px; margin-top: 25px; }
-button { padding: 12px 24px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1rem; }
-.btn-primary { background-color: var(--primary-color); color: white; }
-.btn-primary:hover { background-color: #1b5e20; transform: translateY(-2px); }
-.btn-secondary { background-color: #f1f1f1; color: #333; }
-.btn-secondary:hover { background-color: #e0e0e0; }
+.date-inputs input {
+    margin-top: 5px;
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+}
 
-/* Alerta d'IPC */
-.ipc-alert {
-    background-color: #fff3cd;
-    color: #856404;
-    padding: 18px 25px;
-    border-left: 5px solid #ffeeba;
+button {
+    padding: 10px 20px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover { background: #047857; }
+
+.alert {
+    margin-top: 15px;
+    padding: 10px;
+    background: #fffbeb;
+    border-left: 4px solid #fbbf24;
+    color: #b45309;
+    border-radius: 4px;
+}
+
+/* Grids per resultats base */
+.grid-2col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #f8fafc;
+    padding: 15px 20px;
     border-radius: 8px;
-    margin-bottom: 30px;
-    font-size: 1rem;
-    animation: fadeIn 0.5s ease-in-out;
+    border: 1px solid var(--border);
 }
 
-/* Tauler Principal d'Energia */
-.main-energy-board { display: flex; gap: 30px; }
-.energy-col { flex: 1.5; display: flex; flex-direction: column; gap: 20px; }
-.other-impacts-col { flex: 1; }
-
-.energy-data-subgrid { display: flex; gap: 15px; }
-.sub-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); flex: 1; }
-.sub-card.consum { border-top: 4px solid #ef5350; }
-.sub-card.generacio { border-top: 4px solid var(--accent-solar); background: #fffde7; }
-.sub-card.balanc { border-top: 4px solid var(--accent-reduit); background: #e3f2fd; }
-.sub-card h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-.sub-card p { margin: 8px 0; font-size: 0.95rem; }
-.sub-card span { font-weight: 700; font-size: 1.1rem; }
-
-.impacte-reduit { color: var(--accent-reduit); font-weight: 600 !himportant; font-size: 0.9rem !important;}
-.net-value { font-size: 1.2rem !important; font-weight: 800 !important; color: #1565c0;}
-
-.other-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-.card { background: var(--panel-bg); padding: 20px; border-radius: var(--border-radius); border-left: 4px solid var(--primary-light); box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-
-/* Reducció Dashboard */
-.reduction-dashboard { background-color: var(--reduction-bg); border: 1px solid #c8e6c9; }
-.reduction-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px; flex-wrap: wrap; gap: 10px;}
-.target-flag { background: var(--primary-color); color: white; padding: 8px 15px; border-radius: 20px; font-weight: 700; font-size: 1rem; }
-
-.split-layout { display: flex; gap: 30px; }
-.split-layout > div { flex: 1; }
-.reduction-left { display: flex; flex-direction: column; gap: 20px;}
-
-.impact-list { list-style: none; padding: 0; margin: 0; }
-.impact-list li { display: flex; align-items: center; background: white; padding: 18px; border-radius: 8px; margin-bottom: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-.impact-list .icon { font-size: 2.2rem; margin-right: 18px; }
-.impact-list .data { font-size: 0.95rem;}
-.impact-list .data strong { color: var(--primary-color); }
-
-.actualitzat { border-top: 4px solid var(--primary-color) !important; background: white !important;}
-
-/* Càlcul Solar en Reducció */
-.strategy-card.solar-expansion { background: white; padding: 25px; border-radius: var(--border-radius); box-shadow: 0 4px 10px rgba(0,0,0,0.03); border: 2px solid var(--accent-solar); }
-.strategy-card h4 { color: #f57f17; font-size: 1.1rem; margin-bottom: 5px;}
-
-.solar-calc-results { display: flex; gap: 15px; margin: 20px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 20px 0;}
-.calc-res-item { flex: 1; text-align: center; display: flex; flex-direction: column; align-items: center;}
-.calc-val { font-size: 2.2rem; font-weight: 800; color: #333; line-height: 1;}
-.calc-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; max-width: 100px; line-height: 1.2;}
-.highlight .calc-val { color: #e65100; font-size: 2.6rem;}
-.highlight .calc-label { color: #bf360c; font-weight: 600;}
-
-.implementation-note { background: #fef8f3; color: #795548; padding: 12px; border-radius: 6px; font-size: 0.9rem; text-align: center; margin-top: 15px;}
-
-/* Utils */
-.display-none { display: none; }
-
-/* Responsive */
-@media (max-width: 900px) {
-    .main-energy-board, .split-layout { flex-direction: column; }
-    .energy-data-subgrid { flex-direction: column; }
-    .controls-layout { flex-direction: column; align-items: start; }
-    .date-inputs, .solar-stats-box { width: 100%; }
+.card h3 {
+    margin-top: 0;
+    color: var(--accent);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+.card p {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    border-bottom: 1px dashed #e2e8f0;
+    padding-bottom: 4px;
+}
+
+/* Llista de Mesures (Checklist) */
+.subtitle {
+    margin-bottom: 15px;
+    color: #64748b;
+}
+
+.grid-medidas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.categoria {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.categoria h4 {
+    margin-top: 0;
+    color: var(--primary);
+}
+
+.categoria label {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+/* Resultats Finals */
+.card-final {
+    background: var(--primary);
+    color: white;
+    padding: 25px;
+    border-radius: 8px;
+}
+
+.res-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.res-item.highlight {
+    font-size: 1.4rem;
+    color: #10b981;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #334155;
+}
+
+.res-item.small {
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+hr {
+    border-color: #334155;
+    margin: 20px 0;
 }
