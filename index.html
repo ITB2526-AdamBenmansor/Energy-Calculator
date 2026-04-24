@@ -20,11 +20,11 @@
                     <h3>Configuració</h3>
                     <div class="date-input">
                         <label>Inici</label>
-                        <input type="date" id="startDate" value="2024-09-01" onchange="calcularResultats()">
+                        <input type="date" id="startDate" value="2024-09-01" min="2024-01-01" onchange="calcularResultats()">
                     </div>
                     <div class="date-input">
                         <label>Fi</label>
-                        <input type="date" id="endDate" value="2025-06-20" onchange="calcularResultats()">
+                        <input type="date" id="endDate" value="2025-06-20" min="2024-01-01" onchange="calcularResultats()">
                     </div>
                 </div>
 
@@ -145,7 +145,7 @@
             <button class="close-btn" onclick="closeModal()">&times;</button>
             <h2 style="margin-bottom: 15px; color: #1d1d1f;">Sobre el Projecte</h2>
             <div class="modal-body">
-                <p>Aquesta <strong>Calculadora d'Estalvi Energètic</strong> ha estat desenvolupada en el marc del repte <strong>TA08</strong> per Adam Benmansor i Marc Balastegui</p>
+                <p>Aquesta <strong>Calculadora d'Estalvi Energètic</strong> ha estat desenvolupada en el marc del repte <strong>TA08</strong> per a l'Institut Tecnològic de Barcelona (ITB).</p>
                 <p><strong>Objectiu:</strong> Conscienciar sobre els reptes ambientals i l'impacte del consum al centre educatiu, aplicant principis d'economia circular i criteris ASG (Ambientals, Socials i de Governança).</p>
                 <p><strong>Mòdul implicat:</strong> Mòdul 1708 (Sostenibilitat) - Curs 25/26.</p>
                 <hr style="border:0; border-top: 1px solid #eee; margin: 15px 0;">
